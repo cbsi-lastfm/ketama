@@ -1,3 +1,4 @@
+export LD_LIBRARY_PATH=.
 echo "Downed server test, setting up.."
 # set up downed server
 head -n `wc -l ../ketama.servers | awk '{print $1-1}'` ../ketama.servers > ../ketama.servers.minus.one

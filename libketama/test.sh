@@ -1,9 +1,10 @@
 #!/bin/bash
+export LD_LIBRARY_PATH=.
 SERVERFILE="../ketama.servers"
 
 echo -en "Checking if hashing works as expected..."
 
-OURHASH=`LD_LIBRARY_PATH=. ./ketama_test ${SERVERFILE} | md5sum | cut -b1-32`
+OURHASH=`./ketama_test ${SERVERFILE} | md5sum | cut -b1-32`
 
 if [ "$OURHASH" != "5672b131391f5aa2b280936aec1eea74" ]
 then
