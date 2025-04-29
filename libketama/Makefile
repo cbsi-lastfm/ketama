@@ -1,5 +1,5 @@
 PREFIX=$(DESTDIR)/usr
-CFLAGS+=-fPIC -W -Wall -Werror
+CFLAGS+=-std=gnu99 -fPIC -W -Wall -Werror -Wno-stringop-truncation
 
 build:
 	gcc $(CFLAGS) -O3 -c md5.c
@@ -12,7 +12,7 @@ debug:
 	gcc -g -shared -Wl,-soname,libketama.so.1 -o libketama.so.1 ketama-debug.o md5-debug.o -lm
 
 test: build
-	LD_LIBRARY_PATH=. gcc $(CFLAGS) -I. -O3 -o ketama_test ketama_test.c ./libketama.so.1 -lm
+	gcc $(CFLAGS) -I. -O3 -o ketama_test ketama_test.c ./libketama.so.1 -lm
 	@./test.sh
 	@./downed_server_test.sh
 
